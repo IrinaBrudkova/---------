@@ -31,7 +31,41 @@ const movieDB = {
 const adv = document.querySelectorAll(".promo__adv img"),
     poster = document.querySelector(".promo__bg"),
     genre = poster.querySelector(".promo__genre"),
-    movieList = document.querySelector(".promo__interactive-list");
+    movieList = document.querySelector(".promo__interactive-list"),
+    inputIn = document.querySelector(".adding__input"),
+    btn = document.querySelector("button"),
+    newFilm = inputIn.value,
+    checkBox = document.querySelector('input[type = "checkbox"]'),
+    films = document.querySelectorAll(".promo__interactive-item"),
+    deleteFilm = document.querySelectorAll(".delete");
+
+console.log(films);
+
+function checkFavoriteFilm() {
+    if (checkBox.checked) {
+        console.log(checkBox.checked);
+        console.log("Добавляем любимый фильм.");
+    }
+}
+
+function numerateFilms() {
+    movieDB.movies.forEach((film, i) => {
+        movieList.innerHTML += `<li class="promo__interactive-item">
+        ${i + 1}. ${film}
+        <div class="delete"></div>
+    </li>`;
+    }); // добавить фильмы из movieDB, добавить нумерацию
+}
+
+function veryLongStringCheck() {
+    let longString = inputIn.value;
+    if (longString.length > 21) {
+        longString = longString.substr(0, 21);
+        movieDB.movies.push(`${longString} ...`);
+    } else {
+        movieDB.movies.push(inputIn.value.toUpperCase()); // добавить фильм в ммассив
+    }
+}
 
 adv.forEach((item) => {
     item.remove();
@@ -41,13 +75,14 @@ genre.textContent = "драма"; // Изменить жанр фильма, п�
 
 poster.style.backgroundImage = 'url("img/bg.jpg ")'; //Изменить задний фон постера
 
-movieList.innerHTML = ""; // очистить список с просмотренными фильмами
+function myFilms(event) {
+    event.preventDefault(); //остановить стандартное поведение браузера
+    veryLongStringCheck(); //проверяем на длину и записываем в массив
+    movieDB.movies.sort(); // отсортировать список фильмов по алфавиту
+    movieList.innerHTML = ""; // очистить список с просмотренными фильмами
+    numerateFilms(); // пронумеровать фильмы по порядку
+    checkFavoriteFilm(); // поставили галочку?
+    inputIn.value = "";
+}
 
-movieDB.movies.sort(); // отсортировать список фильмов по алфавиту
-
-movieDB.movies.forEach((film, i) => {
-    movieList.innerHTML += `<li class="promo__interactive-item">
-    ${i + 1}. ${film}
-    <div class="delete"></div>
-</li>`;
-}); // добавить фильмы из movieDB, добавить нумерацию
+btn.addEventListener("click", myFilms);
