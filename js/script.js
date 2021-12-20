@@ -35,11 +35,7 @@ const adv = document.querySelectorAll(".promo__adv img"),
     inputIn = document.querySelector(".adding__input"),
     btn = document.querySelector("button"),
     newFilm = inputIn.value,
-    checkBox = document.querySelector('input[type = "checkbox"]'),
-    films = document.querySelectorAll(".promo__interactive-item"),
-    deleteFilm = document.querySelectorAll(".delete");
-
-console.log(films);
+    checkBox = document.querySelector('input[type = "checkbox"]');
 
 function checkFavoriteFilm() {
     if (checkBox.checked) {
