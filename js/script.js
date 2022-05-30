@@ -73,7 +73,8 @@ document.addEventListener("DOMContentLoaded", () => {
     deleteAdv(adv);
     makeChanges();
 
-    /*  самостоятельная работа */
+    /* еще варианты */
+
     // inputIn = document.querySelector(".adding__input"),
     // btn = document.querySelector("button"),
     // newFilm = inputIn.value,
@@ -120,6 +121,4 @@ document.addEventListener("DOMContentLoaded", () => {
     // }
 
     // btn.addEventListener("click", myFilms);
-
-    /* далее решение из урока*/
 });
